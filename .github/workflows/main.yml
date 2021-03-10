@@ -40,6 +40,6 @@ jobs:
           context: ./src
           file: ./src/Dockerfile
           tags:
-            raphael-souza/api-produto:latest
-            raphael-souza/api-produto:${{ github.run_number }}
+            raphael3130/api-produto:latest
+            raphael3130/api-produto:${{ github.run_number }}
           push: true
