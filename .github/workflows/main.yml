@@ -39,7 +39,7 @@ jobs:
         with:
           context: ./src
           file: ./src/Dockerfile
-          tags:
-            raphael3130/api-produto
-            raphael3130/api-produto:${{ github.run_number }}
+#           tags:
+#             raphael3130/api-produto:latest
+#             raphael3130/api-produto:${{ github.run_number }}
           push: true
