@@ -59,7 +59,7 @@ jobs:
         with:
           # Path to the manifest files which will be used for deployment.
           manifests: 
-            k8s/mongodb/deployment.yaml
-            k8s/mongodb/service.yaml
+            k8s/api/deployment.yaml
+            k8s/api/service.yaml
             
          
