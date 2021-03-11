@@ -15,7 +15,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  CI:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -43,3 +43,23 @@ jobs:
 #             raphael3130/api-produto:latest
             raphael3130/api-produto:${{ github.run_number }}
           push: true
+          
+  CD:
+    needs: [CI]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Definindo Contexto do Kubernetes
+        uses: Azure/k8s-set-context@v1
+        with:
+          kubeconfig: ${{ secrets.K8S_CONFIG }}
+          # If your kubeconfig has multiple contexts, use this field to use a specific context, otherwise the default one would be chosen
+      - name: Deploy MongoDB
+        uses: Azure/k8s-deploy@v1.3
+        with:
+          # Path to the manifest files which will be used for deployment.
+          manifests: 
+            k8s/api/mongodb/deployment.yml
+            k8s/api/mongodb/service.yml
+            
+         
